@@ -1,12 +1,12 @@
 <template>
   <v-container class="pt-4">
     <v-row>
-      <v-col cols="3" lg="3" sm="4" xs="6">
-        <div class="layout__main">
+      <v-col cols="3" xl="3" sm="4" xs="6">
+        <div>
           <Main />
         </div>
       </v-col>
-      <v-col cols="9" lg="9" sm="8" xs="6">
+      <v-col cols="9" xl="9" sm="8" xs="6">
         <Detail />
       </v-col>
     </v-row>
@@ -29,25 +29,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.layout__main {
-  height: 80vh;
-  overflow: hidden;
-  overflow-y: scroll;
-}
-.layout__main::-webkit-scrollbar {
-  width: 12px;
-}
-
-.layout__main::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-.layout__main::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 15px #a1a1a1;
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
-</style>
+<style lang="scss" scoped></style>
