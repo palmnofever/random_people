@@ -1,7 +1,7 @@
 <template>
-  <v-container v-if="currentId">
+  <v-container v-if="currentId" class="pt-0">
     <v-row>
-      <v-col cols="12" class="justify-center">
+      <v-col cols="12" class="justify-center pt-0">
         <v-card class="pa-4">
           <v-flex class="d-flex justify-ceter align-center">
             <div>

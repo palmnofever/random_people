@@ -1,16 +1,29 @@
 <template>
-  <v-container>
+  <v-container class="pt-0">
     <v-row v-for="person in team" :key="person.id">
-      <v-col column cols="12" class="justify-center hidden-lg-and-down">
-        <v-card max-width="380">
+      <v-col column cols="12" class="justify-center pt-0">
+        <v-card
+          ref="card"
+          :id="'card-' + person.id"
+          :href="'#card-' + person.id"
+          max-width="380"
+          class="list__items"
+          :class="{ active: currentId === person.id }"
+          @click="showDetail(person.id)"
+        >
           <v-row>
-            <v-col cols="4" class="text-center pl-8 d-flex align-center">
+            <v-col
+              cols="4"
+              xl="4"
+              sm="12"
+              class="text-center pl-xl-8 pl-sm-0 d-flex align-center justify-center"
+            >
               <v-avatar class="grey lighten-3" size="100">
                 <v-img v-if="person.image" :src="person.image"></v-img>
                 <v-img v-if="!person.image"></v-img>
               </v-avatar>
             </v-col>
-            <v-col cols="8"
+            <v-col cols="8" xl="8" sm="12"
               ><v-card-text class="text--primary">
                 <div>
                   {{ person.card.name }}
@@ -33,37 +46,6 @@
           </v-row>
         </v-card>
       </v-col>
-
-      <v-col cols="12" class="justify-center d-xl-none">
-        <v-card max-width="380">
-          <v-row>
-            <v-col cols="12" class="d-flex justify-center pa-0 pt-4">
-              <v-avatar class="grey lighten-3" size="100">
-                <v-img v-if="person.image" :src="person.image"></v-img>
-                <v-img v-if="!person.image"></v-img>
-              </v-avatar>
-            </v-col>
-            <v-col column cols="12 pa-0" class="d-flex justify-center"
-              ><v-card-text class="text--primary text-center">
-                <div>
-                  {{ person.card.name }}
-                </div>
-
-                <div class="grey--text">
-                  {{ person.role }}
-                </div>
-              </v-card-text>
-            </v-col>
-            <v-col column cols="12 pa-0 pb-2" class="d-flex justify-center">
-              <v-card-actions>
-                <v-btn outlined color="indigo" @click="showDetail(person.id)"
-                  >More Detail</v-btn
-                >
-              </v-card-actions>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -76,11 +58,17 @@ export default {
     },
     isTeamUpdated() {
       return this.$store.state.isTeamUpdated;
+    },
+    currentId() {
+      return this.$store.state.currentId;
     }
   },
   methods: {
     showDetail(id) {
       this.$store.commit("SET_currentId", id);
+      document
+        .querySelector(`#card-${id}`)
+        .scrollIntoView({ behavior: "smooth" });
     }
   },
   watch: {
@@ -97,13 +85,10 @@ export default {
     isTeamUpdated: {
       handler(isTeamUpdated) {
         if (isTeamUpdated) {
-          const team_length = this.team.length;
-          console.log(team_length);
           setTimeout(() => {
-            let j = document
+            document
               .querySelectorAll(".button__show__detail")
-              [team_length - 1].click();
-            console.log(j);
+              [this.team.length - 1].click();
             this.$store.commit("SET_isTeamUpdated", false);
           }, 100);
         }
@@ -113,4 +98,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.list__items:hover {
+  background-color: rgb(243, 243, 243);
+  cursor: pointer;
+}
+.active {
+  background-color: rgb(237, 237, 237);
+}
+</style>
