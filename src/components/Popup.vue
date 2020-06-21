@@ -11,8 +11,8 @@
       <v-card-title class="pb-0">
         <span class="headline grey--text">Create New Profile</span>
         <span class="ml-4">OR</span>
-        <v-btn color="success ml-4" @click="generateFakeData()">
-          GENERATE HERE
+        <v-btn large color="success ml-4" @click="generateFakeData()">
+          GENERATE PROFILE
         </v-btn>
       </v-card-title>
 

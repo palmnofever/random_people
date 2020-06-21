@@ -68,7 +68,6 @@
 export default {
   data() {
     return {
-      offsetTop: 0,
       isScrollHeight: false
     };
   },
@@ -96,13 +95,12 @@ export default {
       });
     },
     onScroll(e) {
-      this.offsetTop = e.target.scrollTop;
-      if (this.offsetTop > 100) {
+      let offsetTop = e.target.scrollTop;
+      if (offsetTop > 100) {
         this.isScrollHeight = true;
-      } else if (this.offsetTop < 101) {
+      } else if (offsetTop < 101) {
         this.isScrollHeight = false;
       }
-      console.log(this.offsetTop);
     }
   },
   watch: {
