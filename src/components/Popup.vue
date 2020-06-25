@@ -159,6 +159,9 @@ export default {
   computed: {
     team() {
       return this.$store.state.team;
+    },
+    teamCount() {
+      return this.$store.state.team.length;
     }
   },
   methods: {
@@ -194,7 +197,7 @@ export default {
         sentence,
         role,
         paragraphs,
-        id: this.team.length + 1
+        id: this.team.length + 15
       };
 
       this.$store.commit("SET_newPerson", data);
@@ -231,7 +234,7 @@ export default {
         sentence,
         role,
         paragraphs,
-        id: this.team.length + 1
+        id: this.team.length + 15
       };
     },
 

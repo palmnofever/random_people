@@ -60,6 +60,9 @@ export default new Vuex.Store({
     },
     SET_isTeamUpdated(state, payload) {
       state.isTeamUpdated = payload;
+    },
+    SET_removePerson(state, payload) {
+      state.team.splice(payload, 1);
     }
   },
   actions: {},

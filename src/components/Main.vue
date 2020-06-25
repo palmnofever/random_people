@@ -1,7 +1,7 @@
 <template>
   <v-container ref="overflow" id="overflow" class="pt-0 layout__main">
     <v-row
-      v-for="person in team"
+      v-for="(person, index) in team"
       :key="person.id"
       v-scroll:#overflow="onScroll"
     >
@@ -27,8 +27,11 @@
             </v-col>
             <v-col cols="8" lg="8" sm="12"
               ><v-card-text class="text--primary">
-                <div>
+                <div class="text__holder">
                   {{ person.card.name }}
+                  <v-icon small class="close__icon" @click="removeCard(index)"
+                    >mdi-close</v-icon
+                  >
                 </div>
 
                 <div class="grey--text">
@@ -101,6 +104,9 @@ export default {
       } else if (offsetTop < 101) {
         this.isScrollHeight = false;
       }
+    },
+    removeCard(index) {
+      this.$store.commit("SET_removePerson", index);
     }
   },
   watch: {
@@ -171,5 +177,17 @@ export default {
 }
 .activeButton {
   display: block;
+}
+.text__holder {
+  display: flex;
+  justify-content: space-between;
+}
+.close__icon {
+  position: relative;
+  bottom: 15px;
+}
+.close__icon:hover {
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
 }
 </style>
